@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: ticketing-api
+  datasource:
+    url: jdbc:h2:mem:ticketing;DB_CLOSE_DELAY=-1;LOCK_TIMEOUT=10000
+    username: sa
+    password: ""
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    # >= 32 bytes. Override in every real deployment (env var JWT_SECRET).
+    secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret-change-me}
+    issuer: ticketing-api
+    access-ttl: 15m
+    refresh-ttl: 7d
+  rate-limit:
+    enabled: true
+    auth-per-minute: 20
+    api-per-minute: 300
+  idempotency:
+    ttl: 24h
+    in-progress-timeout: 60s
+  seed:
+    enabled: true

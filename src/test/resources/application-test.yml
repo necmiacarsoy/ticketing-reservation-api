@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:ticketing-test;DB_CLOSE_DELAY=-1;LOCK_TIMEOUT=10000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  jwt:
+    secret: test-secret-test-secret-test-secret-test-secret
+  rate-limit:
+    enabled: true
+    auth-per-minute: 100000
+    api-per-minute: 1000000
+  seed:
+    enabled: false

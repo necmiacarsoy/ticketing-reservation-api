@@ -1,0 +1,14 @@
+package com.example.ticketing.enums;
+
+public enum AuditAction {
+    USER_REGISTERED,
+    LOGIN_SUCCESS,
+    LOGIN_FAILED,
+    TOKEN_REFRESHED,
+    EVENT_CREATED,
+    EVENT_UPDATED,
+    EVENT_PUBLISHED,
+    RESERVATION_CREATED,
+    RESERVATION_CONFIRMED,
+    RESERVATION_CANCELLED
+}
